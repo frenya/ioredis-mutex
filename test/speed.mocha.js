@@ -1,18 +1,24 @@
 'use strict';
+const assert = require('assert');
 
 var runWithMutex = require('..').runWithMutex;
+var freeMutex = require('..').freeMutex;
 
 describe('Performance test', function () {
 
-  it('run 1000 times', function (done) {
+  beforeEach(function (done) {
+    freeMutex('speed-test').asCallback(done);
+  })
 
-    this.timeout(20000);
+  it('run 10000 times', function (done) {
+
+    var length = 5000;
+
+    this.timeout(length * 2);
 
     // Speed test
     // Inspired by https://medium.com/@the1mills/a-better-mutex-for-node-js-4b4897fd9f11
-    var a = Array.apply(null, {length: 1000});
-
-    var start = Date.now();
+    var a = Array.apply(null, {length: length});
 
     var i = 0;
 
@@ -25,7 +31,7 @@ describe('Performance test', function () {
       .catch(console.error);
     }))
     .then(function () {
-      console.log(' => Time required => ', Date.now() - start);
+      assert.equal(i, length);
       done();
     })
     .catch(done);
