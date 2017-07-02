@@ -1,0 +1,8 @@
+parser: babel-eslint
+rules:
+  quotes:
+    - 1
+    - single
+  indent:
+    - 1
+    - 2
