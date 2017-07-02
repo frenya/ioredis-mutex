@@ -10,6 +10,9 @@ var redis = new Redis();
 // Connection used for listening for unlock messages
 var sub = new Redis();
 
+var subThreshold = 30;
+var subTimeout = subThreshold * 1;
+
 sub.subscribe('mutex-unlock', function (err, count) {
 });
 
@@ -41,9 +44,20 @@ function getMutex(key, value) {
       }
     }
 
-    sub.on('message', retryLock);
+    function trySubscribe () {
+      var numListeners = sub.listeners('message').length;
+      // console.log('Number of listeners', numListeners);
+      if (numListeners < subThreshold) {
+        sub.on('message', retryLock);
+        tryLock();
+      }
+      else {
+        setTimeout(trySubscribe, subTimeout);
+      }
+    }
 
-    tryLock();
+    trySubscribe();
+
   });
 }
 
