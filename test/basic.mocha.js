@@ -24,10 +24,10 @@ describe('Basic test', function () {
       });
     }
 
-    var p1 = runWithMutex('bazinga', function () { return delayedLog(1, 1000); }).then(console.log);
-    var p2 = runWithMutex('bazinga', function () { return delayedLog(2, 1000); }).then(console.log);
-    var p3 = runWithMutex('bazinga', function () { return delayedLog(3, 1000); }).then(console.log);
-    var p4 = runWithMutex('bazinga', function () { return delayedLog(4, 1000); }).then(console.log);
+    var p1 = runWithMutex('bazinga1', function () { return delayedLog(1, 1000); }).then(console.log);
+    var p2 = runWithMutex('bazinga1', function () { return delayedLog(2, 1000); }).then(console.log);
+    var p3 = runWithMutex('bazinga2', function () { return delayedLog(3, 1000); }).then(console.log);
+    var p4 = runWithMutex('bazinga2', function () { return delayedLog(4, 1000); }).then(console.log);
 
     Promise.all([p1, p2, p3, p4]).asCallback(done);
   });
