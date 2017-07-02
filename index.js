@@ -4,11 +4,13 @@ var Promise = require('bluebird');
 var Redis = require('ioredis');
 var debug = require('debug')('ioredis-mutex');
 
+var url = process.env.REDIS_URL;
+
 // Connection used for setting and freeing locks and publishing unlock messages
-var redis = new Redis();
+var redis = url ? new Redis(url) : new Redis();
 
 // Connection used for listening for unlock messages
-var sub = new Redis();
+var sub = url ? new Redis(url) : new Redis();
 
 var subThreshold = 30;
 var subTimeout = subThreshold * 1;
