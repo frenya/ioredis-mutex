@@ -4,7 +4,8 @@
   "description": "Redis based mutex implementation. Uses pub/sub for mutex retries instead of timeouts.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --recursive --inline-diffs"
+    "test": "mocha --recursive --inline-diffs",
+    "cover": "istanbul cover _mocha --report html -- --recursive -R spec -t 5000"
   },
   "repository": {
     "type": "git",
