@@ -1,0 +1,30 @@
+{
+  "name": "ioredis-mutex",
+  "version": "1.0.0",
+  "description": "Redis based mutex implementation. Uses pub/sub for mutex retries instead of timeouts.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive --inline-diffs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frenya/ioredis-mutex.git"
+  },
+  "keywords": [
+    "mutex",
+    "redis",
+    "pub",
+    "sub"
+  ],
+  "author": "Frantisek Vymazal <frenya@f8.cz> (http://f8.cz)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/frenya/ioredis-mutex/issues"
+  },
+  "homepage": "https://github.com/frenya/ioredis-mutex#readme",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "debug": "^2.6.8",
+    "ioredis": "^3.1.1"
+  }
+}
